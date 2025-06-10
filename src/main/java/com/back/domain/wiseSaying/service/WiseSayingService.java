@@ -1,12 +1,14 @@
 package com.back.domain.wiseSaying.service;
 
 import com.back.WiseSaying;
+import com.back.domain.AppContext;
 import com.back.domain.wiseSaying.repository.WiseSayingRepository;
 
 import java.util.List;
 
+// 서비스클래스는 레포지토리클래스에게만 요청 가능
 public class WiseSayingService {
-    private final WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
+    private final WiseSayingRepository wiseSayingRepository = AppContext.wiseSayingRepository;
 
 
     // 내부 로직 메서드들

@@ -2,14 +2,16 @@ package com.back.domain.wiseSaying.controller;
 
 import com.back.Rq;
 import com.back.WiseSaying;
+import com.back.domain.AppContext;
 import com.back.domain.wiseSaying.service.WiseSayingService;
 
 import java.util.List;
 import java.util.Scanner;
 
+// 컨트롤러클래스는 서비스클래스에게만 요청 가능
 public class WiseSayingController {
-    private final Scanner scanner = new Scanner(System.in);
-    WiseSayingService wiseSayingService = new WiseSayingService();
+    private final Scanner scanner = AppContext.scanner;
+    private final WiseSayingService wiseSayingService = AppContext.wiseSayingService;
 
     // 내부 로직 처리 후 '출력'을 담당하는 action- 메서드들
     // 등록 시 출력 담당

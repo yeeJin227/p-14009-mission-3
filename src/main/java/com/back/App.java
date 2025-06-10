@@ -1,19 +1,20 @@
 package com.back;
 
+import com.back.domain.AppContext;
 import com.back.domain.system.controller.SystemController;
 import com.back.domain.wiseSaying.controller.WiseSayingController;
 
 import java.util.Scanner;
 
+// 사용자응대부분 -> 컨트롤러클래스에게만 요청 가능
 public class App {
-    private final Scanner scanner = new Scanner(System.in);
-
     // 진입점 시작
     public void run() {
         System.out.println("== 명언 앱 ==");
 
-        SystemController systemController = new SystemController();
-        WiseSayingController wiseSayingController = new WiseSayingController();
+        Scanner scanner = AppContext.scanner;
+        SystemController systemController = AppContext.systemController;
+        WiseSayingController wiseSayingController = AppContext.wiseSayingController;
 
         while (true) {
             System.out.print("명령) ");

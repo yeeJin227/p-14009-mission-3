@@ -1,5 +1,7 @@
 package com.back;
 
+import com.back.domain.AppContext;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,7 +13,7 @@ public class WiseSaying {
     private LocalDateTime createDate; // 등록 날짜
     private LocalDateTime modifyDate; // 수정 날짜
 
-    private static DateTimeFormatter forPrintDateTimeFormatter = DateTimeFormatter.ofPattern(("yy-MM-dd HH:mm:ss"));
+    private static DateTimeFormatter forPrintDateTimeFormatter = AppContext.forPrintDateTimeFormatter;
 
     public int getId() {
         return id;
