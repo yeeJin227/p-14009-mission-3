@@ -1,53 +1,46 @@
 package com.back.domain.wiseSaying.service;
 
 import com.back.WiseSaying;
+import com.back.domain.wiseSaying.repository.WiseSayingRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WiseSayingService {
-    private int lastId = 0;
-    private final List<WiseSaying> wiseSayings = new ArrayList<>();
+    private final WiseSayingRepository wiseSayingRepository = new WiseSayingRepository();
+
 
     // 내부 로직 메서드들
     // 등록 로직
     public WiseSaying write(String content, String author) {
-        WiseSaying wiseSaying = new WiseSaying(++lastId, author, content);
+        WiseSaying wiseSaying = new WiseSaying(content, author);
 
-        wiseSayings.add(wiseSaying);
+        wiseSayingRepository.save(wiseSaying);
 
         return wiseSaying;
     }
 
     // 목록 로직
     public List<WiseSaying> findForList() {
-        return wiseSayings.reversed();
+        return wiseSayingRepository.findForList();
     }
 
     // 삭제 로직
     public WiseSaying delete(int id) {
-        WiseSaying deleteIndex = findById(id);
-
-        // 명언 없을 때
-        if (deleteIndex == null) return deleteIndex;
-
-        wiseSayings.remove(deleteIndex);
-
-        return deleteIndex;
+        return wiseSayingRepository.deleteById(id);
     }
 
     // 사용자가 삭제&수정하고자 하는 번호가 리스트의 몇 번째 인덱스인지 찾는 메서드
     public WiseSaying findById(int id) {
-        return wiseSayings
-                .stream()
-                .filter(wiseSaying -> wiseSaying.getId() == id)
-                .findFirst()
-                .orElse(null);
+        return wiseSayingRepository.findById(id);
     }
 
     // 수정 로직
     public void modify(WiseSaying wiseSaying, String content, String author) {
         wiseSaying.setContent(content);
         wiseSaying.setAuthor(author);
+
+        wiseSayingRepository.save(wiseSaying);
     }
 }
+
+
